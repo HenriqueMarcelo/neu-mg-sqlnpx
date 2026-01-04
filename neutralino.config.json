@@ -79,6 +79,10 @@
     "extensionsPath": "/extensions/",
     "binaryVersion": "6.4.0",
     "clientVersion": "6.4.0",
+    "copyItems": [
+      "/MDBQueryVemovel.exe",
+      "MDBQueryVemovel.exe"
+    ],
     "frontendLibrary": {
       "patchFile": "/react-app/index.html",
       "devUrl": "http://localhost:5173",

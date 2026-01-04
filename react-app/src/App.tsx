@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { filesystem } from "@neutralinojs/lib"
+import { filesystem, os } from "@neutralinojs/lib"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +15,12 @@ function App() {
       console.log(err)
     })
   }, [])
+
+  async function handleClick() {
+    const comando = '.\\MDBQueryVemovel.exe "SELECT * FROM GRUPO"'
+    const result = await os.execCommand(comando);
+    console.log(result)
+  }
 
   return (
     <>
@@ -30,6 +36,9 @@ function App() {
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
+        </button>
+        <button onClick={handleClick} style={{ marginLeft: '10px' }}>
+          Click to run
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
