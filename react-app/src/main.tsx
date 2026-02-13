@@ -1,13 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { createRoot } from 'react-dom/client';
+import { App } from './App.jsx';
 import { init } from "@neutralinojs/lib"
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const appElement = document.getElementById('root');
+if (!appElement) {
+  throw new Error("App root element not found");
+}
+const root = createRoot(appElement);
+
+root.render(<App />);
 
 init();
