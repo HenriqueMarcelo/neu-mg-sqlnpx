@@ -27,7 +27,9 @@ export function ExcluirComando({ onCommandRemoved, sql }: Props) {
     const handleExcluirComando = useCallback(async () => {
         showLoader();
         try {
-            const sqlCommand = `DELETE FROM SQL WHERE SQL = '${sql.SQL}'`;
+            const scapedSqlOriginal = sql.SQL.replace(/'/g, "''");
+
+            const sqlCommand = `DELETE FROM SQL WHERE SQL = '${scapedSqlOriginal}'`;
             console.log('Executing SQL Command:', sqlCommand);
             const response = await executeSQL(sqlCommand);
             console.log('SQL Response:', response);

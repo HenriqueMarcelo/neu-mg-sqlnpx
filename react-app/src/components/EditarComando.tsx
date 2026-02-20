@@ -35,7 +35,12 @@ export function EditarComando({ onCommandUpdated, sql: sqlOriginal }: Props) {
     const handleEditarComando = useCallback(async () => {
         showLoader();
         try {
-            const sqlCommand = `UPDATE SQL SET NomeSQL = '${nome}', OBS = '${obs}', SQL = '${sql}' WHERE SQL = '${sqlOriginal.SQL}'`;
+            const scapedNome = nome.replace(/'/g, "''");
+            const scapedObs = obs.replace(/'/g, "''");
+            const scapedSql = sql.replace(/'/g, "''");
+            const scapedSqlOriginal = sqlOriginal.SQL.replace(/'/g, "''");
+
+            const sqlCommand = `UPDATE SQL SET NomeSQL = '${scapedNome}', OBS = '${scapedObs}', SQL = '${scapedSql}' WHERE SQL = '${scapedSqlOriginal}'`;
             console.log('Executing SQL Command:', sqlCommand);
             const response = await executeSQL(sqlCommand);
             console.log('SQL Response:', response);

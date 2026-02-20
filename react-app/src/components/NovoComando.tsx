@@ -28,7 +28,11 @@ export function NovoComando({ onCommandSaved }: Props) {
     const handleNovoComando = useCallback(async () => {
         showLoader();
         try {
-            const sqlCommand = `INSERT INTO SQL (NomeSQL, OBS, SQL) VALUES ('${nome}', '${obs}', '${sql}')`;
+            const scapedNome = nome.replace(/'/g, "''");
+            const scapedObs = obs.replace(/'/g, "''");
+            const scapedSql = sql.replace(/'/g, "''");
+
+            const sqlCommand = `INSERT INTO SQL (NomeSQL, OBS, SQL) VALUES ('${scapedNome}', '${scapedObs}', '${scapedSql}')`;
             console.log('Executing SQL Command:', sqlCommand);
             const response = await executeSQL(sqlCommand);
             console.log('SQL Response:', response);
